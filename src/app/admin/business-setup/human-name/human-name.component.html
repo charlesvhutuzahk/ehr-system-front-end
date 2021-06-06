@@ -1,0 +1,280 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <!--        <h1><a [routerLink]="['/admin/business-setup-dashboard']"><i class="fa fa-arrow-left"></i></a> Address Setup</h1>-->
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a>Home</a></li>
+          <li class="breadcrumb-item active"><a [routerLink]="['/admin/business-setup-dashboard']">Human Name</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-12">
+        <div class="card card-info card-tabs">
+          <div class="card-header p-0 pt-1">
+            <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+              <li class="pt-2 px-3"><h3 class="card-title">Human Name</h3></li>
+              <li class="nav-item">
+                <a class="nav-link active" id="custom-tabs-two-home-tab"
+                   data-toggle="pill" href="#human-name" role="tab"
+                   aria-controls="custom-tabs-two-home" aria-selected="true">Human Name</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="custom-tabs-two-profile-tab"
+                   data-toggle="pill" href="#use"
+                   role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Use</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content" id="custom-tabs-two-tabContent">
+              <div class="tab-pane fade show active" id="human-name"
+                   role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+                <div class="row">
+                  <div class="card-body table-responsive p-0" style="height: 500px;">
+                    <table class="table table-bordered table-head-fixed text-nowrap">
+                      <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Use</th>
+                        <th>Text</th>
+                        <th>Family</th>
+                        <th>Given</th>
+                        <th>Prefix</th>
+                        <th>Suffix</th>
+                        <th>Period</th>
+                        <th style="width: 100px"></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let human of humanNameList; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{human?.use?.code}}</td>
+                        <td>{{human?.text}}</td>
+                        <td>{{human?.family}}</td>
+                        <td>{{human?.given}}</td>
+                        <td>{{human?.prefix}}</td>
+                        <td>{{human?.suffix}}</td>
+                        <td>{{human?.period}}</td>
+                        <td>
+                            <span class="btn-group btn-group-sm btn-info">
+                              <a class="btn btn-group-sm btn-success" title="View">
+                                <i class="fa fa-eye"></i>
+                              </a>
+                              <a class="btn btn-group-sm btn-info" title="Edit">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                              <a class="btn btn-group-sm btn-danger" title="Delete">
+                                <i class="fa fa-trash"></i>
+                              </a>
+                            </span>
+
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="fab" data-toggle="modal" data-target="#create-human-name" title="Add"> + </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="use" role="tabpanel"
+                   aria-labelledby="custom-tabs-two-profile-tab">
+                <div class="row">
+                  <div class="card-body table-responsive p-0" style="height: 500px;">
+                    <table class="table table-bordered table-head-fixed text-nowrap">
+                      <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Lvl</th>
+                        <th>Code</th>
+                        <th>Display</th>
+<!--                        <th>Definition</th>-->
+                        <th style="width: 100px"></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let use of nameUseList; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{use?.level}}</td>
+                        <td>{{use?.code}}</td>
+                        <td>{{use?.display}}</td>
+<!--                        <td>{{use?.definition}}</td>-->
+                        <td>
+                            <span class="btn-group btn-group-sm btn-info">
+                              <a class="btn btn-group-sm btn-success" title="View">
+                                <i class="fa fa-eye"></i>
+                              </a>
+                              <a class="btn btn-group-sm btn-info" title="Edit">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                              <a class="btn btn-group-sm btn-danger" title="Delete">
+                                <i class="fa fa-trash"></i>
+                              </a>
+                            </span>
+
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="fab" data-toggle="modal" data-target="#create-use" title="Add"> + </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--create-human-name-->
+  <div class="modal fade" id="create-human-name">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header card-info">
+          <h4 class="modal-title">Create Human Name</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Family</label>
+                <input [(ngModel)]="newHumanName.family" type="text" class="form-control" placeholder="Enter Family">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Given</label>
+                <input [(ngModel)]="newHumanName.given" type="text" class="form-control"
+                       placeholder="Enter Given">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Name</label>
+                <input [(ngModel)]="newHumanName.name" type="text" class="form-control"
+                       placeholder="Enter Name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Prefix</label>
+                <input [(ngModel)]="newHumanName.prefix" type="text" class="form-control"
+                       placeholder="Enter Prefix">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Period Start Date</label>
+                <input [(ngModel)]="newHumanPeriod.startDate" type="date" class="form-control"
+                       placeholder="Enter Name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Period End Date</label>
+                <input [(ngModel)]="newHumanPeriod.endDate" type="date" class="form-control"
+                       placeholder="Enter Prefix">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Suffix</label>
+                <input [(ngModel)]="newHumanName.suffix" type="text" class="form-control"
+                       placeholder="Enter Suffix">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Text</label>
+                <input [(ngModel)]="newHumanName.text" type="text" class="form-control"
+                       placeholder="Enter Text">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Name Use</label>
+                <ng-select (change)="onCodeChange($event)">
+                  <ng-option *ngFor="let use of nameUseList" [value]="use">
+                    {{use?.code}}</ng-option>
+                </ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--create-use-->
+  <div class="modal fade" id="create-use">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header card-info">
+          <h4 class="modal-title">Create Name Use</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Level</label>
+                <input [(ngModel)]="newNameUse.level" type="text" class="form-control" placeholder="Enter Level">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Code</label>
+                <input [(ngModel)]="newNameUse.code" type="text" class="form-control"
+                       placeholder="Enter Code">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Display</label>
+                <input [(ngModel)]="newNameUse.display" type="text" class="form-control"
+                       placeholder="Enter Display">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Definition</label>
+                <input [(ngModel)]="newNameUse.definition" type="text" class="form-control"
+                       placeholder="Enter Definition">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

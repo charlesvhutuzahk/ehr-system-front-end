@@ -1,0 +1,345 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <a [routerLink]="['/business-setup/organisation']"><i class="fa fa-arrow-left"></i></a>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a [routerLink]="['/business-setup/organisation']">Home</a></li>
+          <li class="breadcrumb-item active">Organisation Details</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Organisation List</h3>
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+            <div class="row">
+              <div class="col-12">
+                <div class="btn-group fa-pull-right">
+                  <button class="btn btn-info" data-toggle="modal" data-target="#create-organisation"> Add Organisation
+                  </button>
+                </div>
+              </div>
+            </div>
+          <br>
+          <div class="card-body table-responsive p-0" style="height: 400px;">
+            <table class="table table-bordered table-head-fixed text-nowrap">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Trading Title</th>
+                <th>Registration Number</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let organisation of organisationList, let i = index">
+                <td>{{i + 1}}</td>
+                <td><a a style="color: dodgerblue" data-toggle="modal" data-target="#activate-organisation"
+                       (click)="selectOrganisation(organisation)">{{organisation?.name}}</a></td>
+                <td><a style="color: dodgerblue" data-toggle="modal" data-target="#create-admin-organisation"
+                       (click)="selectOrganisation(organisation)">{{organisation?.tradingTitle}}</a></td>
+                <td>{{organisation?.registrationNumber}}</td>
+                <td>{{organisation?.phoneNumber}}</td>
+                <td>{{organisation?.email}}</td>
+                <td>{{organisation?.active}}</td>
+              </tr>
+              <tr *ngIf="!organisationList">
+                <td colspan="4" class="text-center">
+                  <span class="spinner-border spinner-border-lg align-center"></span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--activate organisation-->
+<div class="modal fade" id="activate-organisation">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Activate Organisation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Name</label>
+              <input [(ngModel)]="selectedOrganisation.name" type="text" class="form-control" placeholder="Enter Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Trading Name</label>
+              <input [(ngModel)]="selectedOrganisation.tradingTitle" type="text" class="form-control"
+                     placeholder="Enter Trading Name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Registration Number</label>
+              <input [(ngModel)]="selectedOrganisation.registrationNumber" type="text" class="form-control"
+                     placeholder="Enter Registration Number">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Address Line 1</label>
+              <input [(ngModel)]="selectedOrganisation.addressline1" type="text" class="form-control"
+                     placeholder="Enter Address">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Address Line 2</label>
+              <input [(ngModel)]="selectedOrganisation.addressline2" type="text" class="form-control"
+                     placeholder="Enter Address">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Country</label>
+              <input [(ngModel)]="selectedOrganisation.country" type="text" class="form-control"
+                     placeholder="Enter Country">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input [(ngModel)]="selectedOrganisation.phoneNumber" type="text" class="form-control"
+                     placeholder="Enter Phone Number">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Telephone Number</label>
+              <input [(ngModel)]="selectedOrganisation.telNumber" type="text" class="form-control"
+                     placeholder="Enter Telephone Number">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Email</label>
+              <input [(ngModel)]="selectedOrganisation.email" type="email" class="form-control"
+                     placeholder="Enter Email">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Website</label>
+              <input [(ngModel)]="selectedOrganisation.website" type="text" class="form-control"
+                     placeholder="Enter Website">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="activateOrganisation()">Activate</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--create-organisation-->
+<div class="modal fade" id="create-organisation">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create Organisation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Name</label>
+              <input [(ngModel)]="newOrganisation.name" type="text" class="form-control" placeholder="Enter Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Trading Name</label>
+              <input [(ngModel)]="newOrganisation.tradingTitle" type="text" class="form-control"
+                     placeholder="Enter Trading Name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Registration Number</label>
+              <input [(ngModel)]="newOrganisation.registrationNumber" type="text" class="form-control"
+                     placeholder="Enter Registration Number">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Address Line 1</label>
+              <input [(ngModel)]="newOrganisation.addressline1" type="text" class="form-control"
+                     placeholder="Enter Address">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Address Line 2</label>
+              <input [(ngModel)]="newOrganisation.addressline2" type="text" class="form-control"
+                     placeholder="Enter Address">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Country</label>
+              <input [(ngModel)]="newOrganisation.country" type="text" class="form-control"
+                     placeholder="Enter Country">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input [(ngModel)]="newOrganisation.phoneNumber" type="text" class="form-control"
+                     placeholder="Enter Phone Number">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Telephone Number</label>
+              <input [(ngModel)]="newOrganisation.telNumber" type="text" class="form-control"
+                     placeholder="Enter Telephone Number">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Email</label>
+              <input [(ngModel)]="newOrganisation.email" type="email" class="form-control"
+                     placeholder="Enter Email">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Website</label>
+              <input [(ngModel)]="newOrganisation.website" type="text" class="form-control"
+                     placeholder="Enter Website">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createOrganisation()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--create-admin-organisation-->
+<div class="modal fade" id="create-admin-organisation">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create Organisation Admin</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Name</label>
+              <input [(ngModel)]="selectedOrganisation.name" type="text" class="form-control" placeholder="Enter Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Trading Name</label>
+              <input [(ngModel)]="selectedOrganisation.tradingTitle" type="text" class="form-control"
+                     placeholder="Enter Trading Name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Admin Name</label>
+              <input [(ngModel)]="newOrganisationAdminUser.name" type="text" class="form-control" placeholder="Enter Admin Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Admin Surname</label>
+              <input [(ngModel)]="newOrganisationAdminUser.lastName" type="text" class="form-control"
+                     placeholder="Enter Admin Last Name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Email</label>
+              <input [(ngModel)]="newOrganisationAdminUser.email" type="text" class="form-control"
+                     placeholder="Enter Email">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Password</label>
+              <input [(ngModel)]="newOrganisationAdminUser.password" type="text" class="form-control"
+                     placeholder="Enter Password">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createOrganisationAdmin()">Create Admin</button>
+      </div>
+    </div>
+  </div>
+</div>
+

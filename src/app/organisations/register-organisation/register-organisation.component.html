@@ -1,0 +1,98 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <a [routerLink]="['/']" ><i class="fa fa-arrow-left" ></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 center">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Organisation Details</h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Name</label>
+                  <input [(ngModel)]="newOrganisation.name" type="text" class="form-control" placeholder="Enter Name">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Trading Name</label>
+                  <input [(ngModel)]="newOrganisation.tradingTitle" type="text" class="form-control" placeholder="Enter Trading Name">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Registration Number</label>
+                  <input [(ngModel)]="newOrganisation.registrationNumber" type="text" class="form-control"  placeholder="Enter Registration Number">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Address Line 1</label>
+                  <input [(ngModel)]="newOrganisation.addressline1" type="text" class="form-control" placeholder="Enter Address">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Address Line 2</label>
+                  <input [(ngModel)]="newOrganisation.addressline2" type="text" class="form-control" placeholder="Enter Address">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Country</label>
+                  <input [(ngModel)]="newOrganisation.country" type="text" class="form-control"  placeholder="Enter Country">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Phone Number</label>
+                  <input [(ngModel)]="newOrganisation.phoneNumber" type="text" class="form-control" placeholder="Enter Phone Number">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Telephone Number</label>
+                  <input [(ngModel)]="newOrganisation.telNumber" type="text" class="form-control" placeholder="Enter Telephone Number">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Email</label>
+                  <input [(ngModel)]="newOrganisation.email" type="email" class="form-control"  placeholder="Enter Email">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label >Website</label>
+                  <input [(ngModel)]="newOrganisation.website" type="text" class="form-control"  placeholder="Enter Website">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary fa-pull-right" (click)="createOrganisation()">Create Organisation</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

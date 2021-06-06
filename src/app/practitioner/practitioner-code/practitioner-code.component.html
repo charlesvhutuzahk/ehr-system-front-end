@@ -1,0 +1,135 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <a [routerLink]="['/practitioner']"><i class="fa fa-arrow-left"></i></a>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a [routerLink]="['/practitioner']">Home</a></li>
+          <li class="breadcrumb-item">Practitioner</li>
+          <li class="breadcrumb-item active">Practitioner Code</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Practitioner Code List</h3>
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-12">
+              <div class="btn-group fa-pull-right">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#create-organisation"> Add Code
+                </button>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="card-body table-responsive p-0" style="height: 400px;">
+            <table class="table table-bordered table-head-fixed text-nowrap">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Definition</th>
+                <th>Display</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let practitionerCode of practitionerCodeList, let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{practitionerCode?.code}}</td>
+                <td>{{practitionerCode?.definition}}</td>
+                <td>{{practitionerCode?.display}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--create-practitioner code-->
+<div class="modal fade" id="create-organisation">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create Practitioner Code</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <span class="fa-pull-right">
+              <ui-switch checkedLabel="HL7"
+                         uncheckedLabel="SNOMED"></ui-switch>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Search Term: <span *ngIf="searchStarted">{{searchResultsFound}} results found</span></label>
+              <input (keyup)="getSnomedPractitionerRoles(newPractitionerCode.searchTerm)"
+                     [(ngModel)]="newPractitionerCode.searchTerm" type="text" class="form-control"
+                     placeholder="Enter Search Term">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Code</label>
+              <ng-select (change)="onCodeChange($event)">
+                <ng-option value="">All Codes</ng-option>
+                <ng-option *ngFor="let code of searchTermResultList" [value]="code">
+                  Code: {{code?.conceptId}} Term: {{code?.pt?.term}}</ng-option>
+              </ng-select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Definition</label>
+              <input [(ngModel)]="newPractitionerCode.definition" type="text" class="form-control"
+                     placeholder="Definition">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Display</label>
+              <input [(ngModel)]="newPractitionerCode.display" type="text" class="form-control"
+                     placeholder="Display" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="createPractitionerCode()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+

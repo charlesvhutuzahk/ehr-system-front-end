@@ -1,0 +1,168 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <a ><i class="fa fa-arrow-left" ></i></a>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a >Home</a></li>
+          <li class="breadcrumb-item active">Admin Users</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Admin Users</h3>
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body table-responsive p-0" style="height: 500px;">
+            <table class="table table-bordered table-head-fixed text-nowrap">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Organisation</th>
+                <th>Organisation Status</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let organisationAdmin of organisationAdminList, let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{organisationAdmin?.name}}</td>
+                <td>{{organisationAdmin?.lastName}}</td>
+                <td>{{organisationAdmin?.email}}</td>
+                <td><a data-toggle="modal" data-target="#view-organisation"
+                       (click)="selectOrganisationAdmin(organisationAdmin)">{{organisationAdmin?.organisation?.name}}</a></td>
+                <td>{{organisationAdmin?.active}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--view organisation-->
+<div *ngIf="selectedAdminOrganisation !=null" class="modal fade" id="view-organisation">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">View Organisation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Organisation Admin</label>
+              <input [(ngModel)]="selectedAdminOrganisation.name" type="text" class="form-control" placeholder="Enter Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Surname</label>
+              <input [(ngModel)]="selectedAdminOrganisation.lastName" type="text" class="form-control" placeholder="Last Name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Name</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.name" type="text" class="form-control" placeholder="Enter Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Trading Name</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.tradingTitle" type="text" class="form-control" placeholder="Enter Trading Name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Registration Number</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.registrationNumber" type="text" class="form-control"  placeholder="Enter Registration Number">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Address Line 1</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.addressline1" type="text" class="form-control" placeholder="Enter Address">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Address Line 2</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.addressline2" type="text" class="form-control" placeholder="Enter Address">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Country</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.country" type="text" class="form-control"  placeholder="Enter Country">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Phone Number</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.phoneNumber" type="text" class="form-control" placeholder="Enter Phone Number">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Telephone Number</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.telNumber" type="text" class="form-control" placeholder="Enter Telephone Number">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Email</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.email" type="email" class="form-control"  placeholder="Enter Email">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label >Website</label>
+              <input [(ngModel)]="selectedAdminOrganisation.organisation.website" type="text" class="form-control"  placeholder="Enter Website">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Button</button>
+      </div>
+    </div>
+  </div>
+</div>
+

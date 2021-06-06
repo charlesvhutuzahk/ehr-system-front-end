@@ -1,0 +1,65 @@
+﻿<div class="container" id="container">
+  <div class="form-container sign-in-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h1>Infodatis</h1>
+<!--      <div class="social-container">-->
+<!--        <a  class="social"><i class="fab fa-facebook-f"></i></a>-->
+<!--        <a  class="social"><i class="fab fa-google-plus-g"></i></a>-->
+<!--        <a  class="social"><i class="fab fa-linkedin-in"></i></a>-->
+<!--      </div>-->
+        <div class="form-group">
+          <label>At a Health Care Organisation</label>
+          <select class="form-control">
+            <option>Select Organisation</option>
+            <option>Chisipite Clinic</option>
+            <option>Avenues Clinic</option>
+            <option>St Annes</option>
+            <option>Baines Clinic</option>
+          </select>
+        </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+          <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+      </div>
+      <a >Forgot your password?</a>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Sign In
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-right">
+        <h1>Hello!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button [routerLink]="['../register']" class="ghost" id="signUp" disabled data-toggle="tool-tip" title="Registration is disabled">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const signUpButton = document.getElementById('signUp');
+  const signInButton = document.getElementById('signIn');
+  const container = document.getElementById('container');
+
+  signUpButton.addEventListener('click', () => {
+    container.classList.add("right-panel-active");
+  });
+
+  signInButton.addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+  });
+</script>

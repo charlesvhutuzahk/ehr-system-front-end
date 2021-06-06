@@ -1,0 +1,218 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+<!--        <h1><a [routerLink]="['/admin/business-setup-dashboard']"><i class="fa fa-arrow-left"></i></a> Address Setup</h1>-->
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a>Home</a></li>
+          <li class="breadcrumb-item active"><a [routerLink]="['/admin/business-setup-dashboard']">Address Setup</a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col-12 col-sm-12">
+      <div class="card card-info card-tabs">
+        <div class="card-header p-0 pt-1">
+          <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+            <li class="pt-2 px-3"><h3 class="card-title">Address Setup</h3></li>
+            <li class="nav-item">
+              <a class="nav-link active" id="custom-tabs-two-home-tab"
+                 data-toggle="pill" href="#address-type" role="tab"
+                 aria-controls="custom-tabs-two-home" aria-selected="true">Address Type</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-two-profile-tab"
+                 data-toggle="pill" href="#address-use"
+                 role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Address Use</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="custom-tabs-two-tabContent">
+            <div class="tab-pane fade show active" id="address-type"
+                 role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+              <div class="row">
+                    <div class="card-body table-responsive p-0" style="height: 500px;">
+                      <table class="table table-bordered table-head-fixed text-nowrap">
+                        <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Code</th>
+                          <th>Display</th>
+                          <th>Definition</th>
+                          <th style="width: 100px"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let address of addressTypeList; let i = index">
+                          <td>{{i + 1}}</td>
+                          <td>{{address?.code}}</td>
+                          <td>{{address?.display}}</td>
+                          <td>{{address?.definition}}</td>
+                          <td>
+                            <span class="btn-group btn-group-sm btn-info">
+                              <a class="btn btn-group-sm btn-success" title="View">
+                                <i class="fa fa-eye"></i>
+                              </a>
+                              <a class="btn btn-group-sm btn-info" title="Edit">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                              <a class="btn btn-group-sm btn-danger" title="Delete">
+                                <i class="fa fa-trash"></i>
+                              </a>
+                            </span>
+
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                <div class="fab" data-toggle="modal" data-target="#create-address-type" title="Add"> + </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="address-use" role="tabpanel"
+                 aria-labelledby="custom-tabs-two-profile-tab">
+              <div class="row">
+                <div class="card-body table-responsive p-0" style="height: 500px;">
+                  <table class="table table-bordered table-head-fixed text-nowrap">
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Code</th>
+                      <th>Display</th>
+                      <th>Definition</th>
+                      <th style="width: 100px"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let address of addressUseList; let i = index">
+                      <td>{{i + 1}}</td>
+                      <td>{{address?.code}}</td>
+                      <td>{{address?.display}}</td>
+                      <td>{{address?.definition}}</td>
+                      <td>
+                            <span class="btn-group btn-group-sm btn-info">
+                              <a class="btn btn-group-sm btn-success" title="View">
+                                <i class="fa fa-eye"></i>
+                              </a>
+                              <a class="btn btn-group-sm btn-info" title="Edit">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                              <a class="btn btn-group-sm btn-danger" title="Delete">
+                                <i class="fa fa-trash"></i>
+                              </a>
+                            </span>
+
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="fab" data-toggle="modal" data-target="#create-address-use" title="Add"> + </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!--create-address-type-->
+  <div class="modal fade" id="create-address-type">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header card-info">
+          <h4 class="modal-title">Create Address Type</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Code</label>
+                <input [(ngModel)]="newAddressType.code" type="text" class="form-control" placeholder="Enter Address Code">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Display</label>
+                <input [(ngModel)]="newAddressType.display" type="text" class="form-control"
+                       placeholder="Enter Display">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Definition</label>
+                <input [(ngModel)]="newAddressType.definition" type="text" class="form-control"
+                       placeholder="Enter Definition">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--create-address-use-->
+  <div class="modal fade" id="create-address-use">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header card-info">
+          <h4 class="modal-title">Create Address Use</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Code</label>
+                <input [(ngModel)]="newAddressUse.code" type="text" class="form-control" placeholder="Enter Address Code">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Display</label>
+                <input [(ngModel)]="newAddressUse.display" type="text" class="form-control"
+                       placeholder="Enter Display">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Definition</label>
+                <input [(ngModel)]="newAddressUse.definition" type="text" class="form-control"
+                       placeholder="Enter Definition">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</section>
