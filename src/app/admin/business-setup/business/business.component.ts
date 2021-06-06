@@ -83,6 +83,20 @@ export class BusinessComponent implements OnInit {
     {code: 'secondary', definition: 'An identifier that was assigned in secondary use - it serves to identify the object in a relative context, but cannot be consistently assigned to the same object again in a different context.', display: 'Secondary'},
     {code: 'old', definition: 'The identifier id no longer considered valid, but may be relevant for search purposes. E.g. Changes to identifier schemes, account merges, etc.', display: 'Old'},
   ];
+  organisationTypeList: OrganisationType[] = [
+    {code: 'prov', display: 'Healthcare Provider'},
+    {code: 'dept', display: 'Hospital Department'},
+    {code: 'team', display: 'Organizational team'},
+    {code: 'govt', display: 'Government'},
+    {code: 'ins', display: 'Insurance Company'},
+    {code: 'pay', display: 'Payer'},
+    {code: 'edu', display: 'Educational Institute'},
+    {code: 'reli', display: 'Religious Institution'},
+    {code: 'crs', display: 'Clinical Research Sponsor'},
+    {code: 'cg', display: 'Community Group'},
+    {code: 'bus', display: 'Non-Healthcare Business or Corporation'},
+    {code: 'other', display: 'Other'},
+  ];
   constructor() { }
 
   ngOnInit(): void {

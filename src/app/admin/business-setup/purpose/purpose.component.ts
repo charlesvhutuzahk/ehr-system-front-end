@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Purpose} from '../../../models/purpose';
 
 @Component({
   selector: 'app-purpose',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./purpose.component.css']
 })
 export class PurposeComponent implements OnInit {
-
+  purposeList: Purpose[] = [];
+  newPurpose: Purpose = new Purpose();
   constructor() { }
 
   ngOnInit(): void {

@@ -267,15 +267,19 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label >Address Type</label>
-                  <input type="text" class="form-control"
-                         placeholder="Address Type">
+                  <ng-select (change)="onOrganisationAddressCodeChange($event)">
+                    <ng-option *ngFor="let type of addressTypeList" [value]="type">
+                      {{type?.display}}</ng-option>
+                  </ng-select>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label >Address Use</label>
-                  <input type="text" class="form-control"
-                         placeholder="Address Use">
+                  <ng-select (change)="onOrganisationAddressUseCodeChange($event)">
+                    <ng-option *ngFor="let use of addressUseList" [value]="use">
+                      {{use?.display}}</ng-option>
+                  </ng-select>
                 </div>
               </div>
             </div>
@@ -359,16 +363,20 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Identifier Code</label>
-                <input type="text" class="form-control" [(ngModel)]="newIdentifierType.code"
-                       placeholder="Identifier Code" required>
+                <label>Identifier Type</label>
+                <ng-select (change)="onOrganisationAddressCodeChange($event)">
+                  <ng-option *ngFor="let type of identifierTypeList" [value]="type">
+                    {{type?.display}}</ng-option>
+                </ng-select>
               </div>
             </div>
             <div class="col-md-6">
-              <label>Identifier Display</label>
+              <label>Identifier Use</label>
               <div class="form-group">
-                <input type="text" class="form-control" [(ngModel)]="newIdentifierType.display"
-                       placeholder="Identifier Display" required>
+                <ng-select (change)="onOrganisationAddressCodeChange($event)">
+                  <ng-option *ngFor="let use of identifierUseList" [value]="use">
+                    {{use?.display}}</ng-option>
+                </ng-select>
               </div>
             </div>
           </div>
@@ -376,9 +384,9 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Identifier Use</label>
+                <label>Identifier</label>
                 <input type="text" class="form-control"
-                       placeholder="Identifier Use">
+                       placeholder="Identifier">
               </div>
             </div>
             <div class="col-md-6">
@@ -416,18 +424,20 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Organisation Code</label>
-                <input type="text" class="form-control" [(ngModel)]="newOrganisationType.code"
-                       placeholder="Organisation Code">
+                <label>Organisation Type</label>
+                <ng-select (change)="onOrganisationAddressCodeChange($event)">
+                  <ng-option *ngFor="let type of organisationTypeList" [value]="type">
+                    {{type?.display}}</ng-option>
+                </ng-select>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Organisation Display</label>
+                <label>Organisation</label>
                 <input type="text" class="form-control" [(ngModel)]="newOrganisationType.display"
-                       placeholder="Organisation Display">
+                       placeholder="Organisation">
               </div>
             </div>
           </div>
